@@ -1,0 +1,88 @@
+.contact-form__container {
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    box-shadow: var(--ombre3);
+    border-radius: var(--radius-big);
+    padding: var(--space-m);
+    margin: var(--space-xl) 0;
+    font-family: var(--global--font-secondary);
+}
+.contact-form__container .titre-2 {
+    font-weight: 1000;
+    text-align: center;
+    font-family: var(--global--font-primary);
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+.contact-form label {
+    margin: var(--space-s) 0 0 0;
+    padding-left: var(--space-xs);
+    color: var(--secondary-color-90);
+    font-size: var(--step--1);
+}
+.contact-form input {
+    /* margin: var(--space-s) 0 0 0; */
+    color: var(--secondary-color-90);
+    background: var(--bg-color_white);
+    /* box-shadow: var(--ombre3); */
+    border-radius: var(--radius-big);
+    border: none;
+    line-height: 2;
+    padding: 0 var(--space-xs);
+
+}
+.contact-form input.bouton--blanc {
+border: 1px solid var(--secondary-color-90);
+margin: var(--space-s) 0 var(--space-m) 0;
+}
+.contact-form textarea {
+    /* margin: var(--space-s) 0 0 0; */
+    color: var(--secondary-color-90);
+    background: var(--bg-color_white);
+    /* box-shadow: var(--ombre3); */
+    border-radius: var(--radius-medium);
+    border: none;
+    padding: var(--space-xs) var(--space-xs);
+    resize: none;
+
+}
+
+
+.contact-form .requit::after {
+    content: '*';
+    color: var(--contrast-color_jaune);
+    /* font-size: var(--step--2); */
+    font-variant-position: super;
+    margin-left: 0.13em;
+    font-weight: bold;
+}
+
+.contact-form #submitted {
+    visibility: hidden;
+}
+.error{
+    padding: 5px 9px;
+    border: 0.5px solid var(--secondary-color-90);
+    color: var(--contrast-color_rouge);
+    border-radius: 11px;
+    font-size: var(--step--1);
+    font-weight: bold;
+  }
+.contact-form .error{
+    border: none;
+    font-size: var(--step--2);
+    padding: 0 0 0 var(--space-xs);
+    color: var(--secondary-color-90);
+    font-weight: normal;
+
+  }
+
+  .lire-tac a,
+  .lire-tac {
+      font-size: var(--step--2);
+      padding-left: var(--space-xs);
+      color: var(--secondary-color-90);
+      line-height: 1 !important;
+  }
