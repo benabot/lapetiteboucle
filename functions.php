@@ -5,17 +5,43 @@
  * FONCTIONNALITÉS DU SITES SUR LA BOUCLE 'INIT'
  *
  ***/
-//** MENUS */
-// function lpb_theme_menus()
-// {
-//     $location = array(
-//         'primary' => "Menu principal",
-//         'footer' => "Menu du pied de page"
-//     );
-//     register_nav_menus($location);
-// }
+//** CUSTOM POST TYPE */
+function lpb_register_post_types() {
+	
+    // CPT Points de collecte
+    $labels = array(
+        'name' => 'Points de collecte',
+        'all_items' => 'Tous les points de collecte',  // affiché dans le sous menu
+        'singular_name' => 'Point de collecte',
+        'add_new_item' => 'Ajouter un point de collecte',
+        'edit_item' => 'Modifier le point de collecte',
+        'menu_name' => 'Collectes'
+    );
 
-// add_action('init', 'lpb_theme_menus');
+	$args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor','thumbnail', 'excerpt', 'custom-fields' ),
+        'menu_position' => 5, 
+        'menu_icon' => 'dashicons-editor-contract',
+	);
+
+	register_post_type( 'collectes', $args );
+}
+add_action( 'init', 'lpb_register_post_types' );
+
+function lpb_override_query( $wp_query ) {
+    if( $wp_query->is_post_type_archive( 'collectes' ) ): 
+        $wp_query->set( 'posts_per_page', 12 );
+        $wp_query->set( 'order', 'ASC' );
+        $wp_query->set( 'orderby', 'name' );
+
+
+    endif;
+}
+add_action( 'pre_get_posts', 'lpb_override_query' );
 
 /***
  *
@@ -33,8 +59,8 @@ if (!function_exists('lpb_theme_setup')) {
         );
         add_theme_support('post-thumbnails');
         // add_theme_support('custom-background');
-        add_theme_support('editor-color-palette');
-        add_theme_support('custom-header');
+       // add_theme_support('editor-color-palette');
+       // add_theme_support('custom-header');
         add_theme_support('automatic-feed-links');
 
         //** MENUS */
@@ -42,7 +68,7 @@ if (!function_exists('lpb_theme_setup')) {
             array(
                 'primary' => __('Primary menu'),
                 'footer'  => __('Secondary menu'),
-                'member'  => __('Member menu'),
+                'legal'  => __('Legal menu'),
             )
         );
     }
@@ -63,28 +89,37 @@ function lpb_theme_register_scripts() // TODO : 1.penser à minifier pour prod ;
     // Général
     wp_enqueue_style(
         'principal',
-        get_template_directory_uri() . "/assets/css/style.css",
+        get_template_directory_uri() . "/assets/css/style.min.css",
         array(),
-        '1.0',
+        '1.1',
         'all'
     );
     // Print
-    wp_enqueue_style(
-        'print',
-        get_template_directory_uri() . "/assets/css/print.css",
-        array(),
-        '1.0',
-        'print'
-    );
+    // wp_enqueue_style(
+    //     'print',
+    //     get_template_directory_uri() . "/assets/css/print.css",
+    //     array(),
+    //     '1.0',
+    //     'print'
+    // );
 
-    //**  JS   **//
-    wp_enqueue_script(
-        'main',
-        get_template_directory_uri() . '/assets/js/script.js',
-        array(),
+    //**  JS  et CSS pour page CONTACT  **//
+    if (is_page_template('contact.php') ){
+    // wp_enqueue_script(
+    //     'main',
+    //     get_template_directory_uri() . '/assets/js/script.js',
+    //     array(),
+    //     '1.0',
+    //     true
+    // );
+    wp_enqueue_style(
+        'contact',
+        get_template_directory_uri() . "/assets/css/contact.min.css",
+        array('principal'),
         '1.0',
-        true
+        'all'
     );
+}
 
     //** NETTOYAGE */
     wp_deregister_script('wp-embed');
@@ -124,17 +159,17 @@ function lpb_theme_widgets_init()
             'after_title'   => '</h3>',
         )
     );
-    register_sidebar(
-        array(
-            'name'          => esc_html__('Barre latérale', 'lpb_theme'),
-            'id'            => 'sidebar-1',
-            'description'   => esc_html__('Add widgets here to appear in your sidebar.', 'lpb_theme'),
-            'before_widget' => '<section id="%1$s" class="widget %2$s">',
-            'after_widget'  => '</section>',
-            'before_title'  => '<h3 class="widget-title">',
-            'after_title'   => '</h3>',
-        )
-    );
+    // register_sidebar(
+    //     array(
+    //         'name'          => esc_html__('Barre latérale', 'lpb_theme'),
+    //         'id'            => 'sidebar-1',
+    //         'description'   => esc_html__('Add widgets here to appear in your sidebar.', 'lpb_theme'),
+    //         'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    //         'after_widget'  => '</section>',
+    //         'before_title'  => '<h3 class="widget-title">',
+    //         'after_title'   => '</h3>',
+    //     )
+    // );
 }
 add_action('widgets_init', 'lpb_theme_widgets_init');
 
@@ -182,18 +217,25 @@ add_action('admin_head', 'fix_svg');
 
 
 
-/**
- * Add "is-IE" class to body if the user is on Internet Explorer.
- *
- */
-function lpb_theme_add_ie_class()
-{
-?>
-    <script>
-        if (-1 !== navigator.userAgent.indexOf('MSIE') || -1 !== navigator.appVersion.indexOf('Trident/')) {
-            document.body.classList.add('is-IE');
-        }
-    </script>
-<?php
+
+
+
+/*--------------------------------------------------------------
+# CUSTOM LIRE LA SUITE
+--------------------------------------------------------------*/
+
+function wpdocs_excerpt_more( $more ) {
+    if ( ! is_single() ) {
+        $more = sprintf( ' <a class="read-more" href="%1$s">%2$s</a>',
+            get_permalink( get_the_ID() ),
+            __( 'lire la suite...', 'textdomain' )
+        );
+    }
+ 
+    return $more;
 }
-add_action('wp_footer', 'lpb_theme_add_ie_class');
+add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+
+/*--------------------------------------------------------------
+# FORMULAIRE
+--------------------------------------------------------------*/

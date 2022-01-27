@@ -1,14 +1,14 @@
 </main>
-<aside aria-label="Sidebar" id="sidebar--bas" class="">
-    <?php dynamic_sidebar('footerbar-1') ?>
-</aside>
-<footer>
 
+<footer>
+<div class="footer-widget">
+<?php dynamic_sidebar('footerbar-1') ?>
+</div>
     <?php wp_nav_menu(
         array(
-            'theme_location' => 'footer',
+            'theme_location' => 'legal',
             'container' => 'ul',
-            'menu_id' => 'footer__menu',
+            'menu_class' => 'footer-legal',
         )
     );
 
