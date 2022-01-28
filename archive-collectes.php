@@ -3,7 +3,7 @@
     <div class="section__container">
     <h1 class="titre-1 titre-cat">Les <span class="titre-cat__vert-bg"><?php post_type_archive_title(); ?></span></h1>
     <h3 class="titre-2 sous-titre-cat icon__carre icon__carre--brb">Déposez vos cartouches en déchetterie à Amiens et dans la Somme</h3>
-<p class="collecte__intro">Pour un apport volontaire des points de collecte de cartouche sont à votre disposition à Amiens et dans la Somme (faites un zoom arrière sur la carte pour les voir). N’hésitez pas à les utiliser. La pluspart sont situés dans des déchetteries.</p>
+<p class="collecte__intro">Pour un apport volontaire des points de collecte de cartouche sont à votre disposition à Amiens et dans la Somme. N’hésitez pas à les utiliser. La plupart sont situés dans des déchetteries.</p>
 <?php
 if (have_posts()) {
     while (have_posts()) {
