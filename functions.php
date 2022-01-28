@@ -6,8 +6,9 @@
  *
  ***/
 //** CUSTOM POST TYPE */
-function lpb_register_post_types() {
-	
+function lpb_register_post_types()
+{
+
     // CPT Points de collecte
     $labels = array(
         'name' => 'Points de collecte',
@@ -18,30 +19,31 @@ function lpb_register_post_types() {
         'menu_name' => 'Collectes'
     );
 
-	$args = array(
+    $args = array(
         'labels' => $labels,
         'public' => true,
         'show_in_rest' => true,
         'has_archive' => true,
-        'supports' => array( 'title', 'editor','thumbnail', 'excerpt', 'custom-fields' ),
-        'menu_position' => 5, 
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
+        'menu_position' => 5,
         'menu_icon' => 'dashicons-editor-contract',
-	);
+    );
 
-	register_post_type( 'collectes', $args );
+    register_post_type('collectes', $args);
 }
-add_action( 'init', 'lpb_register_post_types' );
+add_action('init', 'lpb_register_post_types');
 
-function lpb_override_query( $wp_query ) {
-    if( $wp_query->is_post_type_archive( 'collectes' ) ): 
-        $wp_query->set( 'posts_per_page', 12 );
-        $wp_query->set( 'order', 'ASC' );
-        $wp_query->set( 'orderby', 'name' );
+function lpb_override_query($wp_query)
+{
+    if ($wp_query->is_post_type_archive('collectes')) :
+        $wp_query->set('posts_per_page', 12);
+        $wp_query->set('order', 'ASC');
+        $wp_query->set('orderby', 'name');
 
 
     endif;
 }
-add_action( 'pre_get_posts', 'lpb_override_query' );
+add_action('pre_get_posts', 'lpb_override_query');
 
 /***
  *
@@ -59,8 +61,8 @@ if (!function_exists('lpb_theme_setup')) {
         );
         add_theme_support('post-thumbnails');
         // add_theme_support('custom-background');
-       // add_theme_support('editor-color-palette');
-       // add_theme_support('custom-header');
+        // add_theme_support('editor-color-palette');
+        // add_theme_support('custom-header');
         add_theme_support('automatic-feed-links');
 
         //** MENUS */
@@ -104,22 +106,22 @@ function lpb_theme_register_scripts() // TODO : 1.penser à minifier pour prod ;
     // );
 
     //**  JS  et CSS pour page CONTACT  **//
-    if (is_page_template('contact.php') ){
-    // wp_enqueue_script(
-    //     'main',
-    //     get_template_directory_uri() . '/assets/js/script.js',
-    //     array(),
-    //     '1.0',
-    //     true
-    // );
-    wp_enqueue_style(
-        'contact',
-        get_template_directory_uri() . "/assets/css/contact.min.css",
-        array('principal'),
-        '1.0',
-        'all'
-    );
-}
+    if (is_page_template('contact.php')) {
+        // wp_enqueue_script(
+        //     'main',
+        //     get_template_directory_uri() . '/assets/js/script.js',
+        //     array(),
+        //     '1.0',
+        //     true
+        // );
+        wp_enqueue_style(
+            'contact',
+            get_template_directory_uri() . "/assets/css/contact.min.css",
+            array('principal'),
+            '1.0',
+            'all'
+        );
+    }
 
     //** NETTOYAGE */
     wp_deregister_script('wp-embed');
@@ -224,18 +226,18 @@ add_action('admin_head', 'fix_svg');
 # CUSTOM LIRE LA SUITE
 --------------------------------------------------------------*/
 
-function wpdocs_excerpt_more( $more ) {
-    if ( ! is_single() ) {
-        $more = sprintf( ' <a class="read-more" href="%1$s">%2$s</a>',
-            get_permalink( get_the_ID() ),
-            __( 'lire la suite...', 'textdomain' )
+function wpdocs_excerpt_more($more)
+{
+    if (!is_single()) {
+        $more = sprintf(
+            ' <a class="read-more" href="%1$s">%2$s</a>',
+            get_permalink(get_the_ID()),
+            __('lire la suite...', 'textdomain')
         );
     }
- 
+
     return $more;
 }
-add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+add_filter('excerpt_more', 'wpdocs_excerpt_more');
 
-/*--------------------------------------------------------------
-# FORMULAIRE
---------------------------------------------------------------*/
+

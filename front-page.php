@@ -5,7 +5,7 @@ if (have_posts()) {
         the_post();
 ?>
         <section class="hero">
-            <!-- a tester => <img src="data:image/svg+xml,..." alt=""> -->
+
             <div class="hero__block-titre">
                 <h1 class="hero__titre-1"><?php bloginfo('name'); ?></h1>
                 <h2 class="hero__titre-2"><?php bloginfo('description'); ?></h2>
@@ -15,48 +15,9 @@ if (have_posts()) {
                 <?php
                 the_post_thumbnail(array(440, 332));
                 ?>
-                <!-- <svg class="carres">
-        <use href="#carres" xlink:href="#carres" />
-    </svg> -->
+
             </div>
         </section>
-        <!-- <p class="icon-text-aligner">
-    <svg class="icon">
-        <use href="#icon-cached" xlink:href="#icon-cached" />
-    </svg>
-    <em>This is some text here</em>
-</p> -->
-
-        <!-- <section class="section">
-    <div class="section__container">
-        <h2 class="titre--mono titre-2">Titre 2</h2>
-        <h2 class="titre--mono titre-3">Titre 3</h2>
-        Ut nec malesuada urna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sodales ex et neque sollicitudin, sit amet dignissim orci vehicula. Quisque congue eleifend augue, vitae dignissim diam maximus nec. Integer nisi nulla, convallis eget sem quis, finibus faucibus dui. Nulla vestibulum mi ut vehicula vehicula. Phasellus iaculis tempus nulla eu blandit.
-    </div>
-</section> -->
-
-
-        <!-- <section class="section">
-    <div class="section__container--win">
-        <h2 class="titre--mono titre-2">Titre 2</h2>
-        <h2 class="titre--mono titre-3">Titre 3</h2>
-        Ut nec malesuada urna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sodales ex et neque sollicitudin, sit amet dignissim orci vehicula. Quisque congue eleifend augue, vitae dignissim diam maximus nec. Integer nisi nulla, convallis eget sem quis, finibus faucibus dui. Nulla vestibulum mi ut vehicula vehicula. Phasellus iaculis tempus nulla eu blandit.
-    </div>
-</section>
-<section class="section">
-    <div class="section__container--andr">
-        <h2 class="titre--mono titre-2">Titre 2</h2>
-        <h2 class="titre--mono titre-3">Titre 3</h2>
-        Ut nec malesuada urna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sodales ex et neque sollicitudin, sit amet dignissim orci vehicula. Quisque congue eleifend augue, vitae dignissim diam maximus nec. Integer nisi nulla, convallis eget sem quis, finibus faucibus dui. Nulla vestibulum mi ut vehicula vehicula. Phasellus iaculis tempus nulla eu blandit.
-    </div>
-</section>
-<section class="section">
-    <div class="section__container--lin">
-        <h2 class="titre--mono titre-2">Titre 2</h2>
-        <h2 class="titre--mono titre-3">Titre 3</h2>
-        Ut nec malesuada urna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sodales ex et neque sollicitudin, sit amet dignissim orci vehicula. Quisque congue eleifend augue, vitae dignissim diam maximus nec. Integer nisi nulla, convallis eget sem quis, finibus faucibus dui. Nulla vestibulum mi ut vehicula vehicula. Phasellus iaculis tempus nulla eu blandit.
-    </div>
-</section> -->
 
         <section id="intro" class="section home-intro">
             <div class="section__container">
@@ -70,11 +31,17 @@ if (have_posts()) {
         </section>
         <section class="section home-chiffres">
             <div class="section__container">
-                <div class="chiffres__para"><svg class="icon--float color-bleu"><use href="#icon-directions_bike" xlink:href="#icon-directions_bike"></use></svg><span class="chiffres__titre titre--mono titre-2">Nous collectons</span><span class="chiffres__chiffre color-bleu"><?php echo get_post_meta(get_the_ID(), 'kilo', true); ?></span> de cartouches
+                <div class="chiffres__para"><svg class="icon--float color-bleu">
+                        <use href="#icon-directions_bike" xlink:href="#icon-directions_bike"></use>
+                    </svg><span class="chiffres__titre titre--mono titre-2">Nous collectons</span><span class="chiffres__chiffre color-bleu"><?php echo get_post_meta(get_the_ID(), 'kilo', true); ?></span> de cartouches
                     à Amiens et dans la Somme chaque année</div>
-                <div class="chiffres__para"><svg class="icon--float color-rouge"><use href="#icon-cached" xlink:href="#icon-cached"></use></svg><span class="chiffres__titre titre--mono titre-2">Nous recyclons</span><span class="chiffres__chiffre color-rouge"><?php echo get_post_meta(get_the_ID(), 'pourcentage', true); ?></span> des cartouches
+                <div class="chiffres__para"><svg class="icon--float color-rouge">
+                        <use href="#icon-cached" xlink:href="#icon-cached"></use>
+                    </svg><span class="chiffres__titre titre--mono titre-2">Nous recyclons</span><span class="chiffres__chiffre color-rouge"><?php echo get_post_meta(get_the_ID(), 'pourcentage', true); ?></span> des cartouches
                     de marque (les compatibles ne se remanufacturent pas)</div>
-                <div class="chiffres__para"><svg class="icon--float color-jaune"><use href="#icon-local_printshop" xlink:href="#icon-local_printshop"></use></svg><span class="chiffres__titre titre--mono titre-2">Nous fournissons</span><span class="chiffres__chiffre color-jaune"><?php echo get_post_meta(get_the_ID(), 'points', true); ?></span> de collecte de cartouche
+                <div class="chiffres__para"><svg class="icon--float color-jaune">
+                        <use href="#icon-local_printshop" xlink:href="#icon-local_printshop"></use>
+                    </svg><span class="chiffres__titre titre--mono titre-2">Nous fournissons</span><span class="chiffres__chiffre color-jaune"><?php echo get_post_meta(get_the_ID(), 'points', true); ?></span> de collecte de cartouche
                     à Amiens et dans la Somme</div>
                 <a href="<?php echo get_site_url(); ?>/contact" class="bouton bouton--blanc">ça m’intéresse</a>
             </div>
@@ -111,35 +78,33 @@ if (have_posts()) {
 ?>
 <section class="section home-actu">
     <div class="section__container">
-<h2 class="titre--mono titre-2 icon__carre icon__carre--brb ">Les actualités du tonnerre</h2>
-    <?php
-    // 1. On définit les arguments pour définir ce que l'on souhaite récupérer
-    $args = array(
-        'post_type' => 'post',
-        'category_name' => 'actualites',
-        'posts_per_page' => 3,
-    );
+        <h2 class="titre--mono titre-2 icon__carre icon__carre--brb ">Les actualités du tonnerre</h2>
+        <?php
 
-    // 2. On exécute la WP Query
-    $my_query = new WP_Query($args);
+        $args = array(
+            'post_type' => 'post',
+            'category_name' => 'actualites',
+            'posts_per_page' => 3,
+        );
 
-    // 3. On lance la boucle !
-    if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post();
-    ?>
-            <article>
-                <h3 class="titre-3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                <span class="actu-infos">
-                Publié le <?php the_time(get_option('date_format')); ?>
-            </span>
-                <p><?php the_excerpt(); ?></p>
-            </article>
-    <?php
-        endwhile;
-    endif;
 
-    // 4. On réinitialise à la requête principale (important)
-    wp_reset_postdata();
-    ?>
+        $my_query = new WP_Query($args);
+
+        if ($my_query->have_posts()) : while ($my_query->have_posts()) : $my_query->the_post();
+        ?>
+                <article>
+                    <h3 class="titre-3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    <span class="actu-infos">
+                        Publié le <?php the_time(get_option('date_format')); ?>
+                    </span>
+                    <p><?php the_excerpt(); ?></p>
+                </article>
+        <?php
+            endwhile;
+        endif;
+
+        wp_reset_postdata();
+        ?>
     </div>
 </section>
 

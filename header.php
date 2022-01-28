@@ -15,13 +15,13 @@
         <?php get_template_part('template-parts/icons/icons.svg'); ?>
     </div>
     <header class="header">
-<div class="logo">
-         
-                <?php the_custom_logo(); ?>
-                                                                                        
-</div>
-<label for="hamburger">&#9776;</label>
-  <input type="checkbox" id="hamburger"/>
+        <div class="logo">
+
+            <?php the_custom_logo(); ?>
+
+        </div>
+        <label for="hamburger">&#9776;</label>
+        <input type="checkbox" id="hamburger" />
         <?php wp_nav_menu(
             array(
                 'menu' => 'primary',
@@ -34,9 +34,5 @@
         );
 
         ?>
-
-
-
     </header>
-
     <main class="main--page">

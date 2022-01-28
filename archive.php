@@ -5,9 +5,7 @@
     <?php
 if (is_category()) {
 ?>
-    <!-- <h1 class="titre-1"> -->
-        <!--  -->
-    <!-- </h1> -->
+
     <h1 class="titre-1 titre-cat">Nos <span class="titre-cat__vert-bg"><?php single_cat_title(""); ?></span></h1>
     <h3 class="titre-2 sous-titre-cat icon__carre icon__carre--brb"> <?php echo category_description(); ?></h3>
 <?php

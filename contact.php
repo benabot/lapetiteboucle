@@ -51,23 +51,17 @@ if (isset($_POST['submitted'])) {
 
     $tacError = "Veuillez accepter les conditions d'utilisation.";
     $hasError = true;
-  }  else {
+  } else {
     $tac = $_POST['tac'];
-     
-    }
+  }
 
   if (!isset($hasError)) {
-    // $emailTo = get_option('tz_email');
-    // if (!isset($emailTo) || ($emailTo == '')) {
-    //   $emailTo = get_option('admin_email');
-    // }
+
     $emailTo = 'lapetiteboucle80@gmail.com';
-    $subject = '[contact du site] de ' . $name .' '.$surname;
+    $subject = '[contact du site] de ' . $name . ' ' . $surname;
     $body = "Nom : $name \n\nPrénom : $surname \n\nEmail : $email \n\nTéléphone : $telephone \n\nMessage : $comments";
-    $headers = 'From: ' . $name .' '.$surname .' <info@lapetiteboucle.fr>' . "\r\n" . 'Reply-To: ' . $email;
-   // $headers = array( 'Content-Type: text/html; charset=UTF-8' );
-    	
-//$headers = "From: Site name <info@lapetiteboucle.fr" . "\r\n";
+    $headers = 'From: ' . $name . ' ' . $surname . ' <info@lapetiteboucle.fr>' . "\r\n" . 'Reply-To: ' . $email;
+
     wp_mail($emailTo, $subject, $body, $headers, array());
     $emailSent = true;
   }
@@ -109,23 +103,20 @@ if (isset($_POST['submitted'])) {
 
               <label for="telephone">téléphone</label>
               <input type="tel" name="telephone" id="telephone" value="<?php if (isset($_POST['telephone'])) echo $_POST['telephone']; ?>" class="" autocomplete="tel-local" pattern="^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$" />
-
-
               <label for="email" class="requit">mail</label>
               <input type="email" name="email" id="email" value="<?php if (isset($_POST['email']))  echo $_POST['email']; ?>" class="required requiredField email" required autocapitalize="none" autocomplete="email" />
               <?php if ($emailError != '') { ?>
                 <span class="error"><?= $emailError; ?></span>
               <?php } ?>
-
-
               <label for="commentsText" class="requit">message</label>
-              <textarea name="comments" id="commentsText" rows="6" cols="60" class="required requiredField" required spellcheck="true"><?php if (isset($_POST['comments'])) {
-                                                                                                                                          if (function_exists('stripslashes')) {
-                                                                                                                                            echo stripslashes($_POST['comments']);
-                                                                                                                                          } else {
-                                                                                                                                            echo $_POST['comments'];
-                                                                                                                                          }
-                                                                                                                                        } ?></textarea>
+              <textarea name="comments" id="commentsText" rows="6" cols="60" class="required requiredField" required spellcheck="true">
+                <?php if (isset($_POST['comments'])) {
+                  if (function_exists('stripslashes')) {
+                    echo stripslashes($_POST['comments']);
+                  } else {
+                    echo $_POST['comments'];
+                  }
+                } ?></textarea>
               <?php if ($commentError != '') { ?>
                 <span class="error"><?= $commentError; ?></span>
               <?php } ?>
@@ -140,19 +131,13 @@ if (isset($_POST['submitted'])) {
                 <a href="https://www.lapetiteboucle.fr/politique-de-confidentialite/">Lire les conditions d'utilisation</a>
               </p>
               <p class="notice lire-tac"><span class="color-jaune">
-                * </span> = champs requis</p>
-   
-             
-             
-
-              <input type="submit" class="bouton bouton--blanc" value="envoyer"/>
-
-
+                  * </span> = champs requis</p>
+              <input type="submit" class="bouton bouton--blanc" value="envoyer" />
               <input type="hidden" name="submitted" id="submitted" value="true" />
             </form>
           <?php } ?>
       </div>
-      <!-- </div> -->
+
     </section>
 
 
