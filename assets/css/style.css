@@ -123,11 +123,11 @@ p, h3, h4, h5, h6 {
     margin:  0 0 var(--space-xs) 0;
     line-height: 1;
   }
-  .titre-5 {
+  /* .titre-5 {
     font-size: var(--step-1);
-  }
+  } */
 
-  @media screen and (min-width: 370px){
+  @media screen and (min-width: 800px){
     .titre-1 {
       font-size: var(--step-5);
     }
@@ -540,7 +540,7 @@ min-width: 66px;
    display: none;
    transition: all 1s ease;
  }
- header input:checked ~ #nav--container { display: block; 
+ header input:checked ~ #nav--container { 
   display: block;
   position: absolute;
   top: 0;
@@ -549,6 +549,8 @@ min-width: 66px;
   margin-top: 8.8vh;
   border-radius: 0 0 22px 22px;
   padding-bottom: 44px;
+  box-shadow: var(--ombre2);
+
 }
  header label {
   display: inline-block; 
@@ -947,7 +949,7 @@ width: auto;
 }
 
 .home-actu {
-  margin: 0 0 var(--space-xl) 0;
+  margin: var(--space-l) 0 var(--space-xl) 0;
 }
 .home-actu article {
   margin: 0 0 var(--space-s) 0;
@@ -979,7 +981,11 @@ width: auto;
   font-variant: small-caps;
   font-size: var(--step--1);
 }
-
+@media screen and (min-width: 800px){
+  .home-actu {
+    margin: 0 0 var(--space-xl) 0;
+  }
+}
 
 /*--------------------------------------------------------------
 # LAYOUT ARCHIVE et CPT
