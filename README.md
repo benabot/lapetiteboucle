@@ -21,7 +21,7 @@ Le site repose sur un travail typographique soigné. Il n’a cependant pas reco
 Les polices **monospace** sont rendus grâce à un recours à des *safe fonts* ( polices très répandues sur les terminaux des utilisateurs, quels qu’ils soient ) :
 
 ```css
-	--global--font-secondary: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+--global--font-secondary: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 ```
 
 
